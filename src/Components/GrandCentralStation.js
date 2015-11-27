@@ -5,7 +5,8 @@ import {
   loadFile,
   createChallenge,
   loadChallenge,
-  fileSelect
+  fileSelect,
+  motionAction
 } from './../actions/editorActions';
 
 import $ from 'jquery';
@@ -32,6 +33,19 @@ class GrandCentralStation extends Component {
     this.handleFileSelect = this.handleFileSelect.bind(this);
     this.handleFileIsSelected = this.handleFileIsSelected.bind(this);
     this.handleChallengeClick = this.handleChallengeClick.bind(this);
+    this.handleActionMotion = this.handleActionMotion.bind(this);
+
+  }
+
+
+
+  handleActionMotion() {
+    let motion = arguments[0];
+    let dispatch = this.props.dispatch;
+    motionAction(dispatch, {
+      motion,
+      dispatch
+    });
   }
 
   backView() {
@@ -170,6 +184,14 @@ class GrandCentralStation extends Component {
         {
           name: 'Back',
           action: this.backView
+        },
+        {
+          name: 'Prev',
+          action: this.handleActionMotion.bind(this, -1)
+        },
+        {
+          name: 'Next',
+          action: this.handleActionMotion.bind(this, 1)
         }
       ];
     }

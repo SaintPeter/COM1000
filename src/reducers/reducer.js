@@ -1,3 +1,5 @@
+
+
 const initialState = {
   'fileStore': {},
   'activeFile': '',
@@ -66,6 +68,21 @@ export default function(prevState = initialState, action) {
 
     case 'backAction':
       return (Object.assign({}, prevState, action.payload));
+
+    case 'motionAction':
+      let prevStateChallenges =  prevState.challenges;
+      let currentChallengeIndex = prevStateChallenges
+        .findIndex((elem, index) => {
+          return elem.id === prevState.activeChallenge.id;
+        });
+      if ((currentChallengeIndex < 1 && action.payload.motion === -1)
+        || (currentChallengeIndex === prevStateChallenges.length - 1 && action.payload.motion === 1)) {
+        return prevState;
+      }
+
+      return Object.assign(prevState,
+        {'activeChallenge': prevState.challenges[currentChallengeIndex + action.payload.motion]});
+
 
     default:
       return (prevState);

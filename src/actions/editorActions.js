@@ -5,6 +5,13 @@ export function backAction(dispatch, payload) {
   });
 }
 
+export function motionAction(dispatch, payload) {
+  dispatch({
+    type: 'motionAction',
+    payload
+  });
+}
+
 export function loadFile(dispatch, payload) {
   dispatch({
     type: 'loadFile',

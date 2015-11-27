@@ -77,7 +77,7 @@ class Editor extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let codeMirrors = [];
     const dispatch = this.props.dispatch;
     const challengeId = this.props.challenge.id;
@@ -139,6 +139,7 @@ class Editor extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         {this.state.unrenderedCodeMirrors}
